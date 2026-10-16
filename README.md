@@ -1,6 +1,6 @@
 # Tarea 1.1.2 (Vagrant)
 
-***Sección A:** Investigación*
+
 
 # Vagrant y el Vagrantfile
 **¿Qué es Vagrant y por qué resulta útil? Distingue lo que lo forma, sobre Vagrantfile y su archivo al inicio y al final**
