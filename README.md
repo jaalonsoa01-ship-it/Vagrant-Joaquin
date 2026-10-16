@@ -31,7 +31,13 @@ Vagrant, por defecto, configura la primera red (eth0) como NAT, garantizando que
 
 El reenvío de puertos permite acceder a un puerto de la máquina virtual (guest) a través de un puerto de la máquina host. El tráfico que llega a un puerto específico del host se redirige automáticamente al puerto correspondiente en la VM, es la que nos permite acceder a los servicios que se ejecutan dentro de la VM (como un servidor web) desde el navegador del host. 
 
-Por ejemplo: 
+Por ejemplo, con la configuración: 
+
+´´´
+config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+´´´
+
+Ejecutara el reenvío de puerto 8080 del Host al 80 de la VM en 127.0.0.1
 
 # Órdenes y carpeta compartida. 
 **En una tabla breve, indica cuándo usarías up, status, ssh, reload, provision, halt y destroy; marca cuáles llegaste a ejecutar. Averigua qué es /vagrant y comprueba qué archivos aparecen allí.**
