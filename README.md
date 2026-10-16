@@ -45,6 +45,29 @@ config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
 **Describe la configuración del "Vagrantfile" y cuenta cómo has preparado Apache.**
 
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+  config.vm.hostname = "debian-joaquin"
+
+  # Reenvío de puerto 8080 del Host al 80 de la VM en 127.0.0.1
+  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # Red privada (VirtualBox la crea como Red Interna / Host-Only)
+  config.vm.network "private_network", ip: "192.168.56.10"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "VM-Debian-TuNombre"
+    vb.memory = "1024"
+    vb.cpus = 1
+  end
+
+  config.vm.provision "shell", path: "setup.sh"
+end
+
+```
+
+
 Incluye el contenido completo de cada script Bash en bloques de código y explica qué realiza cada una de sus órdenes. Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
 
 Bibliografía:
