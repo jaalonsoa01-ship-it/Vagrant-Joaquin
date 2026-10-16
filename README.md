@@ -26,7 +26,12 @@ Modificar el contenido de un script de cualquier manera generar cambios, más no
 
 # Interfaces y redes
 **Investiga qué conexión de red configura Vagrant por defecto y para qué la utiliza. Averigua cómo se añade en el Vagrantfile una segunda interfaz con dirección IP fija. Compara NAT, red interna, red privada host-only y red pública: explica con quién puede comunicarse la máquina en cada caso y qué función cumple el reenvío de puertos.**
+
 Vagrant, por defecto, configura la primera red (eth0) como NAT, garantizando que se pueda conectar a la maquina virtual y la usa principalmente para establecer conexiones SSH y reenvio de puertos. Para añadir una segunda interfaz de red con una dirección IP estática, se utiliza la configuración 'private_network' en el Vagrantfile. Esto crea típicamente una red host-only, permitiendo la comunicación directa entre el host y la VM.
+
+El reenvío de puertos permite acceder a un puerto de la máquina virtual (guest) a través de un puerto de la máquina host. El tráfico que llega a un puerto específico del host se redirige automáticamente al puerto correspondiente en la VM, es la que nos permite acceder a los servicios que se ejecutan dentro de la VM (como un servidor web) desde el navegador del host. 
+
+Por ejemplo: 
 
 # Órdenes y carpeta compartida. 
 **En una tabla breve, indica cuándo usarías up, status, ssh, reload, provision, halt y destroy; marca cuáles llegaste a ejecutar. Averigua qué es /vagrant y comprueba qué archivos aparecen allí.**
