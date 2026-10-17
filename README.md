@@ -113,7 +113,7 @@ cat <<EOF > /var/www/html/index.html
 </html>
 EOF
 ```
-Este código es el encargado en configurar el script de aprovisionamiento de Apache (setup.sh), podemos distinguir las configuraciones:
+Este código es el encargado en configurar el script de aprovisionamiento de Apache (setup.sh), su configuración 
 
 - #!/usr/bin/env bash	Shebang que indica que el script se ejecute con Bash 
 - apt-get update	Actualiza la lista de paquetes disponibles en los repositorios 
