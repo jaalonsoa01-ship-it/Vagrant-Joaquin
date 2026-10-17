@@ -100,4 +100,4 @@ text
 # Bibliografía:
 
 Vagrant: https://www.arsys.es/blog/entorno-desarrollo-vagrant
-Fotos usadas: fotosreferencia/ 
+Fotos usadas: fotosreferencia
