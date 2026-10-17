@@ -127,7 +127,7 @@ Añade capturas de pantalla insertadas en el documento que permitan apreciar que
 
 ![Captura_de_status](fotosreferencia/vagrantstatus.png)
 
-text
+Aquí podemos ver el status actual de Apache
 
 ![Server_en_Navegador](fotosreferencia/serverinsearch.png)
 
