@@ -39,6 +39,16 @@ config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 # Órdenes y carpeta compartida. 
 **En una tabla breve, indica cuándo usarías up, status, ssh, reload, provision, halt y destroy; marca cuáles llegaste a ejecutar. Averigua qué es /vagrant y comprueba qué archivos aparecen allí.**
 
+| Comando a usar | Cuando se deberian usarse | ¿Las he utilizado? |
+| --- | --- | --- |
+| ```up``` | --- | --- |
+| ```status``` | --- | --- |
+| ```reload``` | --- | --- |
+| ```provision``` | --- | --- |
+| ```halt``` | --- | --- |
+| ```destroy``` | --- | --- |
+
+
 ***Sección B:** Practica*
 
 **Presenta un esquema de la arquitectura con sus dos interfaces**
@@ -69,8 +79,15 @@ end
 
 ```
 
+# Bloques de bash
+Incluye el contenido completo de cada script Bash en bloques de código y explica qué realiza cada una de sus órdenes. 
 
-Incluye el contenido completo de cada script Bash en bloques de código y explica qué realiza cada una de sus órdenes. Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
+# Capturas de pantalla con el servidor Apache
+Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
+
+![Captura_de_status](fotosreferencia/Esquema.png)
+
+![Server_en_Navegador](fotosreferencia/Esquema.png)
 
 Bibliografía:
 Vagrant: https://www.arsys.es/blog/entorno-desarrollo-vagrant
