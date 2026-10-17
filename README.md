@@ -99,5 +99,5 @@ text
 
 # Bibliografía:
 
-Vagrant: https://www.arsys.es/blog/entorno-desarrollo-vagrant
-Fotos usadas: fotosreferencia
+- Vagrant: https://www.arsys.es/blog/entorno-desarrollo-vagrant
+- Fotos usadas: Vagrant-Joaquin/fotosreferencia
