@@ -79,11 +79,52 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "setup.sh"
 end
 ```
-- config.vm.box	especifica la imagen base (box) a utilizar 
-- config.vm.network "forwarded_port"	mapea un puerto del guest al host para acceder a servicios 
+Este código es el encargado en configurar la maquina virtual (Vagrantfile), podemos distinguir las configuraciones:
+- config.vm.box	especifica la imagen basea utilizar
+- config.vm.hostname	especifica el nombre del usuario
+- config.vm.network mapea un puerto del guest al host para acceder a servicios, dependiendo si se pone "forwarded_port" (Indicando el puerto y red del host a reenviar) o "private_network" (La red interna)
 - config.vm.synced_folder	sincroniza una carpeta local con una ruta en la VM 
-- config.vm.provision "shell"	ejecuta un script de shell durante el aprovisionamiento 
+- config.vm.provision ejecuta un script durante el aprovisionamiento, en el lenguaje indicado (en este caso shell)
+- config.vm.provider configura parámetros específicos del proveedor, la maquina virtual (en este caso virtualbox)
 
+```
+#!/usr/bin/env bash
+set -e
+
+apt-get update -y
+apt-get install -y apache2
+
+systemctl enable apache2
+systemctl start apache2
+
+HOSTNAME=$(hostname)
+cat <<EOF > /var/www/html/index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Entorno Vagrant - Apache</title>
+</head>
+<body>
+    <h1>Servidor Apache de Aprovisionamiento</h1>
+    <p><strong>Estudiante / Desarrollador:</strong> JOAQUIN</p>
+    <p><strong>Hostname de la VM:</strong> ${HOSTNAME}</p>
+</body>
+</html>
+EOF
+```
+Este código es el encargado en configurar el script de aprovisionamiento de Apache (setup.sh), podemos distinguir las configuraciones:
+
+- #!/usr/bin/env bash	Shebang que indica que el script se ejecute con Bash 
+- apt-get update	Actualiza la lista de paquetes disponibles en los repositorios 
+- apt-get install -y apache2	Instala Apache2 automáticamente sin confirmación (-y) 
+- if ! [ -L /var/www ]	Comprueba si /var/www no es un enlace simbólico 
+- rm -rf /var/www	Elimina el directorio actual (forzado y recursivo)
+- ln -fs /vagrant /var/www	Crea un enlace simbólico desde /vagrant a /var/www, permitiendo servir contenido desde la carpeta compartida 
+- systemctl enable apache2	Configura Apache para que se inicie automáticamente al arrancar
+- systemctl start apache2	Inicia el servicio de Apache inmediatamente
+- if [ ! -f /var/www/html/index.html ]	Verifica si existe el archivo de índice
+- echo "..." > /var/www/html/index.html	Crea una página HTML de prueba con contenido visible
 
 ### Bloques de bash
 Incluye el contenido completo de cada script Bash en bloques de código y explica qué realiza cada una de sus órdenes. 
