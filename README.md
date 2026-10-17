@@ -85,9 +85,19 @@ Incluye el contenido completo de cada script Bash en bloques de código y explic
 # Capturas de pantalla con el servidor Apache
 Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
 
-![Captura_de_status](fotosreferencia/Esquema.png)
+![Captura_de_status](fotosreferencia/vagrantstatus.png)
 
-![Server_en_Navegador](fotosreferencia/Esquema.png)
+text
 
-Bibliografía:
+![Server_en_Navegador](fotosreferencia/serverinsearch.png)
+
+text
+
+![Direcciones_web](fotosreferencia/serverdirect.png)
+
+text
+
+# Bibliografía:
+
 Vagrant: https://www.arsys.es/blog/entorno-desarrollo-vagrant
+Fotos usadas: fotosreferencia/ 
