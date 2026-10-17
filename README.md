@@ -43,6 +43,8 @@ config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
 **Presenta un esquema de la arquitectura con sus dos interfaces**
 
+![Esquema](
+
 **Describe la configuración del "Vagrantfile" y cuenta cómo has preparado Apache.**
 
 ```
