@@ -34,6 +34,7 @@ Vagrant, por defecto, configura la primera red (eth0) como NAT, garantizando que
 El reenvío de puertos permite acceder a un puerto de la máquina virtual (guest) a través de un puerto de la máquina host. El tráfico que llega a un puerto específico del host se redirige automáticamente al puerto correspondiente en la VM, es la que nos permite acceder a los servicios que se ejecutan dentro de la VM (como un servidor web) desde el navegador del host. 
 
 Por ejemplo, con la configuración mostrada a continuación significa que el puerto 8080 del Host reenviaria su puerto al puerto 80 de la Maquia virtual en la 127.0.0.1 
+
 ```cmd
 config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 ```
@@ -43,12 +44,13 @@ config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
 | Comando a usar | Cuando se deberian usarse | ¿Las he utilizado? |
 | --- | --- | --- |
-| ```up``` | --- | --- |
-| ```status``` | --- | --- |
-| ```reload``` | --- | --- |
-| ```provision``` | --- | --- |
-| ```halt``` | --- | --- |
-| ```destroy``` | --- | --- |
+| ```up``` | Se usaria si queremos a la vez, crear y arrancar una máquina virtual | si |
+| ```status``` | Se usaría si queremos saber el estado actual de la maquinas | si |
+| ```ssh``` | Se usaria para conectarse a una maquina virtual mediante SSH | no |
+| ```reload``` | Se usaría si hemos hecho cambios y queremos aplicar la configuración y los cambios realizados | no |
+| ```provision``` | Si existe el provisionamiento de una VM ya existente que queramos usar, este comando se encarga de aplicarlo a la máquina | no |
+| ```halt``` | Como sirve para detener la maquina virtual (sin destruirla), sirve para eso mismo| si |
+| ```destroy``` | Se usa si se quiere detener y eliminar la máquina virtual correspondiente | no |
 
 
 ## Sección B: Practica
@@ -79,13 +81,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "setup.sh"
 end
 ```
+
 Este código es el encargado en configurar la maquina virtual (Vagrantfile), podemos distinguir las configuraciones:
-- config.vm.box	especifica la imagen basea utilizar
+- config.vm.box	especifica la imagen base a utilizar
 - config.vm.hostname	especifica el nombre del usuario
 - config.vm.network mapea un puerto del guest al host para acceder a servicios, dependiendo si se pone "forwarded_port" (Indicando el puerto y red del host a reenviar) o "private_network" (La red interna)
 - config.vm.synced_folder	sincroniza una carpeta local con una ruta en la VM 
 - config.vm.provision ejecuta un script durante el aprovisionamiento, en el lenguaje indicado (en este caso shell)
 - config.vm.provider configura parámetros específicos del proveedor, la maquina virtual (en este caso virtualbox)
+
+Normalmente usaríamos ```vagrant init```para generar un Vagrantfile con configuración estándar, sin embargo, como ya hemos creado Vagrantfile podemos ejecutar ```vagrant up``` de una, ya que leera automaticamente el Vagrantfile ya creado, realizando las configuraciones pertinentes.
 
 ```
 #!/usr/bin/env bash
@@ -113,21 +118,9 @@ cat <<EOF > /var/www/html/index.html
 </html>
 EOF
 ```
-Este código es el encargado en configurar el script de aprovisionamiento de Apache (setup.sh), su configuración 
+Este código es el encargado en configurar el script de aprovisionamiento de Apache (setup.sh), su configuración indica que queremos el script ejecutado en bash, que actualice los paquetes disponibles e instale apache 2 sin confirmar. El texto consecuente dentro esta la página web sencilla que he sido mandado a crear, mostrando un mensaje indicando que si es el Servidor Apache de Aprovisionamiento, quien es el estudiante o desarrollador (es decir, yo) y que el hostname de la máquina virtual es (obviamente) el hostname usado dentro de la maquina vagrant, finalizando con EOF (End Of File) que indica el final de este archivo setup.sh.
 
-- #!/usr/bin/env bash	Shebang que indica que el script se ejecute con Bash 
-- apt-get update	Actualiza la lista de paquetes disponibles en los repositorios 
-- apt-get install -y apache2	Instala Apache2 automáticamente sin confirmación (-y) 
-- if ! [ -L /var/www ]	Comprueba si /var/www no es un enlace simbólico 
-- rm -rf /var/www	Elimina el directorio actual (forzado y recursivo)
-- ln -fs /vagrant /var/www	Crea un enlace simbólico desde /vagrant a /var/www, permitiendo servir contenido desde la carpeta compartida 
-- systemctl enable apache2	Configura Apache para que se inicie automáticamente al arrancar
-- systemctl start apache2	Inicia el servicio de Apache inmediatamente
-- if [ ! -f /var/www/html/index.html ]	Verifica si existe el archivo de índice
-- echo "..." > /var/www/html/index.html	Crea una página HTML de prueba con contenido visible
-
-### Bloques de bash
-Incluye el contenido completo de cada script Bash en bloques de código y explica qué realiza cada una de sus órdenes. 
+Esta preparación de apache fue pensada para no solo instalar, pero también crear una pagina web que demuestre que el server es funcional.
 
 ### Capturas de pantalla con el servidor Apache
 Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
