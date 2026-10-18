@@ -135,7 +135,7 @@ Y aquí podemos ver el texto de la página web creada en setup.sh, probando que 
 
 ![Direcciones_web](fotosreferencia/serverdirect.png)
 
-text
+Aquí indico la redes dentro del equipo, no es nada interesante pero igualmente lo pongo
 
 ## Bibliografía:
 
