@@ -125,13 +125,13 @@ Esta preparación de apache fue pensada para no solo instalar, pero también cre
 ### Capturas de pantalla con el servidor Apache
 Añade capturas de pantalla insertadas en el documento que permitan apreciar que el servidor Apache está en ejecución dentro de la máquina y que se puede acceder a su página desde el anfitrión. Elige las capturas que mejor respalden tu explicación y comenta qué muestran.
 
-![Captura_de_status](fotosreferencia/vagrantstatus.png)
+![Captura_de_status](fotosreferencia/vagrantstatusdx.png)
 
-Aquí podemos ver el status actual de Apache
+Aquí podemos ver el status actual del servidor HTTP de Apache
 
 ![Server_en_Navegador](fotosreferencia/serverinsearch.png)
 
-text
+Y aquí podemos ver el texto de la página web creada en setup.sh, probando que el servidor esta activo.
 
 ![Direcciones_web](fotosreferencia/serverdirect.png)
 
